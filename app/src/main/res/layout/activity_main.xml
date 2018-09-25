@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
@@ -17,10 +17,11 @@
         android:layout_margin="4dp"
         android:text="@string/horizontal" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/horizontal_recycler_view"
-        android:layout_width="wrap_content"
+    <com.nunes.eduardo.adaptivecarousel.FlexCollection
+        android:id="@+id/flexCollection"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="horizontal" />
+        app:layout_format="horizontal"
+        app:item_offset="@dimen/item_offset"/>
 
 </LinearLayout>
