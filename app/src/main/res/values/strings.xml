@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Adaptive Carousel</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="grid">Grid</string>
+</resources>
