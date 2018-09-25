@@ -23,19 +23,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         radioButton.setOnClickListener {
-            flexCollection.layoutFormat = 1
+            flexCollection.layoutFormat = CollectionLayoutFormat.HORIZONTAL
         }
 
         radioButton2.setOnClickListener {
-            flexCollection.layoutFormat = 2
+            flexCollection.layoutFormat = CollectionLayoutFormat.VERTICAL
         }
 
         radioButton3.setOnClickListener {
-            flexCollection.layoutFormat = 3
+            flexCollection.layoutFormat = CollectionLayoutFormat.GRID
         }
 
         radioButton4.setOnClickListener {
-            flexCollection.layoutFormat = 4
+            flexCollection.layoutFormat = CollectionLayoutFormat.HORIZONTAL
         }
     }
 }

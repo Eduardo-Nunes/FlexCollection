@@ -10,20 +10,23 @@ import android.util.AttributeSet
 /**
  * Component prepared to work in 3 ways, horizontal and vertical list, or vertical grid
  */
+
+private const val ONE_LINE_COLUM = 1
+
 class FlexCollection : RecyclerView {
 
     private var _layoutFormat: Int = 0
     private var _item_offset: Float = 0f
 
-    var layoutFormat: Int
-        get() = _layoutFormat
+    var layoutFormat: CollectionLayoutFormat
+        get() = CollectionLayoutFormat.from(_layoutFormat)
         set(value) {
-            _layoutFormat = value
+            _layoutFormat = value.value
             invalidateLayout()
         }
 
     private val viewManager: GridLayoutManager by lazy {
-        GridLayoutManager(context,1)
+        GridLayoutManager(context,ONE_LINE_COLUM)
     }
 
     constructor(context: Context) : super(context) {
@@ -64,24 +67,24 @@ class FlexCollection : RecyclerView {
 
     private fun invalidateLayout() {
         when(_layoutFormat){
-            1 -> setHorizontalState()
-            2 -> setVerticalState()
-            3 -> setGridState()
-            4 -> setHorizontalState()
+            CollectionLayoutFormat.HORIZONTAL.value -> setHorizontalState()
+            CollectionLayoutFormat.VERTICAL.value -> setVerticalState()
+            CollectionLayoutFormat.GRID.value -> setGridState()
+            CollectionLayoutFormat.HIGHLIGHT.value -> setVerticalState()
         }
     }
 
     private fun setHorizontalState() {
         isHorizontalScrollBarEnabled = true
         isVerticalScrollBarEnabled = false
-        viewManager.spanCount = 1
+        viewManager.spanCount = ONE_LINE_COLUM
         viewManager.orientation = LinearLayoutManager.HORIZONTAL
     }
 
     private fun setVerticalState() {
         isHorizontalScrollBarEnabled = false
         isVerticalScrollBarEnabled = true
-        viewManager.spanCount = 1
+        viewManager.spanCount = ONE_LINE_COLUM
         viewManager.orientation = LinearLayoutManager.VERTICAL
     }
 
