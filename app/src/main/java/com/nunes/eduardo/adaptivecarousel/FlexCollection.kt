@@ -64,22 +64,32 @@ class FlexCollection : RecyclerView {
 
     private fun invalidateLayout() {
         when(_layoutFormat){
-            1 -> {
-                isHorizontalScrollBarEnabled = true
-                isVerticalScrollBarEnabled = false
-                viewManager.spanCount = 1
-                viewManager.orientation = LinearLayoutManager.HORIZONTAL
-            }
-            2 -> {
-
-            }
-            3 -> {
-                isHorizontalScrollBarEnabled = false
-                isVerticalScrollBarEnabled = true
-                viewManager.spanCount = 4
-                viewManager.orientation = LinearLayoutManager.VERTICAL
-            }
+            1 -> setHorizontalState()
+            2 -> setVerticalState()
+            3 -> setGridState()
+            4 -> setHorizontalState()
         }
+    }
+
+    private fun setHorizontalState() {
+        isHorizontalScrollBarEnabled = true
+        isVerticalScrollBarEnabled = false
+        viewManager.spanCount = 1
+        viewManager.orientation = LinearLayoutManager.HORIZONTAL
+    }
+
+    private fun setVerticalState() {
+        isHorizontalScrollBarEnabled = false
+        isVerticalScrollBarEnabled = true
+        viewManager.spanCount = 1
+        viewManager.orientation = LinearLayoutManager.VERTICAL
+    }
+
+    private fun setGridState() {
+        isHorizontalScrollBarEnabled = false
+        isVerticalScrollBarEnabled = true
+        viewManager.spanCount = 4
+        viewManager.orientation = LinearLayoutManager.VERTICAL
     }
 
     override fun onDraw(canvas: Canvas) {

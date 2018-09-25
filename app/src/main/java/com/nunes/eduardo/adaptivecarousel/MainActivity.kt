@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         val items = arrayOf("tudo", "nada", "tudo", "nada", "all", "nothing", "tudo",
                 "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada",
                 "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "all",
-                "nothing", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada")
+                "nothing", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo",
+                "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada", "tudo", "nada")
 
         val viewAdapter = MyAdapter(items)
 
@@ -21,14 +22,20 @@ class MainActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
-        switch1.setOnCheckedChangeListener { _, b ->
-            if (b){
-                switch1.text = getString(R.string.horizontal)
-                flexCollection.layoutFormat = 1
-            }else{
-                switch1.text = getString(R.string.grid)
-                flexCollection.layoutFormat = 3
-            }
+        radioButton.setOnClickListener {
+            flexCollection.layoutFormat = 1
+        }
+
+        radioButton2.setOnClickListener {
+            flexCollection.layoutFormat = 2
+        }
+
+        radioButton3.setOnClickListener {
+            flexCollection.layoutFormat = 3
+        }
+
+        radioButton4.setOnClickListener {
+            flexCollection.layoutFormat = 4
         }
     }
 }

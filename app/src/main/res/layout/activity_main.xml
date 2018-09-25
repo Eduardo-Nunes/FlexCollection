@@ -8,20 +8,48 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <Switch
-        android:id="@+id/switch1"
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:padding="8dp"
-        android:layout_margin="4dp"
-        android:text="@string/horizontal" />
+        android:orientation="horizontal"
+        android:layout_margin="4dp">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Horizontal" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vertical" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Grid" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Highlight" />
+    </RadioGroup>
 
     <com.nunes.eduardo.adaptivecarousel.FlexCollection
         android:id="@+id/flexCollection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_format="horizontal"
-        app:item_offset="@dimen/item_offset"/>
+        app:item_offset="@dimen/item_offset"
+        android:scrollbars="horizontal"/>
 
 </LinearLayout>
