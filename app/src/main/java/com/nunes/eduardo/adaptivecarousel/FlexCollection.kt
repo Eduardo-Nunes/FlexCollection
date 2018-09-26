@@ -1,11 +1,11 @@
 package com.nunes.eduardo.adaptivecarousel
 
 import android.content.Context
-import android.graphics.Canvas
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.view.View
 
 /**
  * Component prepared to work in 3 ways, horizontal and vertical list, or vertical grid
@@ -66,11 +66,11 @@ class FlexCollection : RecyclerView {
     }
 
     private fun invalidateLayout() {
-        when(_layoutFormat){
-            CollectionLayoutFormat.HORIZONTAL.value -> setHorizontalState()
-            CollectionLayoutFormat.VERTICAL.value -> setVerticalState()
-            CollectionLayoutFormat.GRID.value -> setGridState()
-            CollectionLayoutFormat.HIGHLIGHT.value -> setVerticalState()
+        when(layoutFormat){
+            CollectionLayoutFormat.HORIZONTAL -> setHorizontalState()
+            CollectionLayoutFormat.VERTICAL-> setVerticalState()
+            CollectionLayoutFormat.GRID -> setGridState()
+            CollectionLayoutFormat.HIGHLIGHT-> setVerticalState()
         }
     }
 
@@ -91,26 +91,14 @@ class FlexCollection : RecyclerView {
     private fun setGridState() {
         isHorizontalScrollBarEnabled = false
         isVerticalScrollBarEnabled = true
-        viewManager.spanCount = 4
+        viewManager.spanCount = spanCountByItemSize()
         viewManager.orientation = LinearLayoutManager.VERTICAL
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-//        val paddingLeft = paddingLeft
-//        val paddingTop = paddingTop
-//        val paddingRight = paddingRight
-//        val paddingBottom = paddingBottom
-//
-//        val contentWidth = width - paddingLeft - paddingRight
-//        val contentHeight = height - paddingTop - paddingBottom
-
-
-//        exampleDrawable?.let {
-//            it.setBounds(paddingLeft, paddingTop,
-//                    paddingLeft + contentWidth, paddingTop + contentHeight)
-//            it.draw(canvas)
-//        }
+    private fun spanCountByItemSize(): Int {
+        val itemSize = findViewHolderForAdapterPosition(viewManager.findFirstCompletelyVisibleItemPosition())
+                ?.itemView?.width?.plus(_item_offset)?.toInt()!!
+        val parent = parent as View
+        return parent.width/itemSize
     }
 }

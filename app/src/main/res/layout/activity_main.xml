@@ -46,10 +46,11 @@
 
     <com.nunes.eduardo.adaptivecarousel.FlexCollection
         android:id="@+id/flexCollection"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_format="horizontal"
         app:item_offset="@dimen/item_offset"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        />
 
 </LinearLayout>
