@@ -11,12 +11,12 @@ import android.view.View
  * Component prepared to work in 3 ways, horizontal and vertical list, or vertical grid
  */
 
-private const val ONE_LINE_COLUM = 1
+private const val ONE_LINE_COLUMN = 1
 
 class FlexCollection : RecyclerView {
 
     private var _layoutFormat: Int = 0
-    private var _item_offset: Float = 0f
+    private var _itemOffset: Float = 0f
 
     var layoutFormat: CollectionLayoutFormat
         get() = CollectionLayoutFormat.from(_layoutFormat)
@@ -26,7 +26,7 @@ class FlexCollection : RecyclerView {
         }
 
     private val viewManager: GridLayoutManager by lazy {
-        GridLayoutManager(context,ONE_LINE_COLUM)
+        GridLayoutManager(context,ONE_LINE_COLUMN)
     }
 
     constructor(context: Context) : super(context) {
@@ -53,7 +53,7 @@ class FlexCollection : RecyclerView {
         val a = context.obtainStyledAttributes(
                 attrs, R.styleable.FlexCollection, defStyle, 0)
         _layoutFormat = a.getColor(R.styleable.FlexCollection_layout_format, _layoutFormat)
-        _item_offset = a.getDimension(R.styleable.FlexCollection_item_offset, _item_offset)
+        _itemOffset = a.getDimension(R.styleable.FlexCollection_item_offset, _itemOffset)
         a.recycle()
     }
 
@@ -61,7 +61,7 @@ class FlexCollection : RecyclerView {
         layoutManager = viewManager
         setHasFixedSize(true)
 
-        val itemDecoration = ItemOffsetDecoration(_item_offset.toInt())
+        val itemDecoration = ItemOffsetDecoration(_itemOffset.toInt())
         addItemDecoration(itemDecoration)
     }
 
@@ -77,14 +77,14 @@ class FlexCollection : RecyclerView {
     private fun setHorizontalState() {
         isHorizontalScrollBarEnabled = true
         isVerticalScrollBarEnabled = false
-        viewManager.spanCount = ONE_LINE_COLUM
+        viewManager.spanCount = ONE_LINE_COLUMN
         viewManager.orientation = LinearLayoutManager.HORIZONTAL
     }
 
     private fun setVerticalState() {
         isHorizontalScrollBarEnabled = false
         isVerticalScrollBarEnabled = true
-        viewManager.spanCount = ONE_LINE_COLUM
+        viewManager.spanCount = ONE_LINE_COLUMN
         viewManager.orientation = LinearLayoutManager.VERTICAL
     }
 
@@ -97,7 +97,7 @@ class FlexCollection : RecyclerView {
 
     private fun spanCountByItemSize(): Int {
         val itemSize = findViewHolderForAdapterPosition(viewManager.findFirstCompletelyVisibleItemPosition())
-                ?.itemView?.width?.plus(_item_offset)?.toInt()!!
+                ?.itemView?.width?.plus(_itemOffset)?.toInt()!!
         val parent = parent as View
         return parent.width/itemSize
     }
