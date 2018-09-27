@@ -12,14 +12,14 @@ class CollectionCellModel(
         val model: CollectionModel? = null
 )
 
+data class Size(
+        val percentage: Int,
+        val proportion: Int,
+        val fixed: Int
+)
+
 interface CollectionItem {
     val size: Size
 }
-
-data class Size(
-        val percentage: Float,
-        val proportion: Float,
-        val fixed: Float
-)
 
 class ItemTest (override val size: Size, val title: String) : CollectionItem

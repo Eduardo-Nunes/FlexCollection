@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
                 "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
                 "39", "40", "41", "42", "43", "44", "45", "46", "47")
 
+
         val firstCell = CollectionViewCell(contentPanel)
         val model = CollectionModel(
                 CollectionLayoutFormat.HORIZONTAL,
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 items.map {
                     CollectionCellModel(
                             "test",
-                            ItemTest(Size(0F, 0F, 0F), it),
+                            ItemTest(Size(1, 16/9, 240), it),
                             null
                     )
                 }

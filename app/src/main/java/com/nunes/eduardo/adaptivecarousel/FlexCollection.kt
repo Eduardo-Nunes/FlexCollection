@@ -1,11 +1,14 @@
 package com.nunes.eduardo.adaptivecarousel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 
 /**
  * Component prepared to work in 3 ways, horizontal and vertical list, or vertical grid
@@ -44,7 +47,7 @@ class FlexCollection : RecyclerView {
         init(attrs, 0)
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
         init(attrs, defStyle)
     }
 
@@ -52,7 +55,6 @@ class FlexCollection : RecyclerView {
         initAttrs(attrs, defStyle)
 
         initView()
-
     }
 
     private fun initAttrs(attrs: AttributeSet?, defStyle: Int){
@@ -64,8 +66,8 @@ class FlexCollection : RecyclerView {
     }
 
     private fun initView(){
+
         layoutManager = viewManager
-        setHasFixedSize(true)
 
         setupCellSpacing()
     }
@@ -111,4 +113,12 @@ class FlexCollection : RecyclerView {
         val parent = parent as View
         return parent.width/itemSize
     }
+
+    companion object {
+        @SuppressLint("InflateParams")
+        fun inflate(context: Context): FlexCollection{
+            return LayoutInflater.from(context).inflate(R.layout.flex_collection_layout, null) as FlexCollection
+        }
+    }
+
 }
