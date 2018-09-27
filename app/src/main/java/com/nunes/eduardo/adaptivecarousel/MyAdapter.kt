@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.collection_item.view.*
 
-class MyAdapter(private val myDataset: Array<String>) :
+class MyAdapter(private val myDataset: List<CollectionCellModel>) :
         RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup,
@@ -16,15 +16,15 @@ class MyAdapter(private val myDataset: Array<String>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(myDataset[position])
+        holder.bind(myDataset[position].cellItem)
     }
 
     override fun getItemCount() = myDataset.size
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: String) = with(itemView) {
+        fun bind(item: CollectionItem) = with(itemView) {
             this.background = context.getDrawable(R.drawable.ic_launcher_background)
-            textView.text = item
+            textView.text = (item as ItemTest).title
         }
     }
 

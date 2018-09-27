@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
@@ -43,14 +42,10 @@
             android:layout_weight="1"
             android:text="Highlight" />
     </RadioGroup>
-
-    <com.nunes.eduardo.adaptivecarousel.FlexCollection
-        android:id="@+id/flexCollection"
+    <LinearLayout
+        android:id="@+id/contentPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_format="horizontal"
-        app:item_offset="@dimen/item_offset"
-        android:scrollbars="horizontal"
-        />
+        android:orientation="vertical"/>
 
 </LinearLayout>

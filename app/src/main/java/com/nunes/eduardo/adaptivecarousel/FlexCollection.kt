@@ -15,7 +15,7 @@ private const val ONE_LINE_COLUMN = 1
 
 class FlexCollection : RecyclerView {
 
-    private var _layoutFormat: Int = 0
+    private var _layoutFormat: Int = 1
     private var _itemOffset: Float = 0f
 
     var layoutFormat: CollectionLayoutFormat
@@ -23,6 +23,13 @@ class FlexCollection : RecyclerView {
         set(value) {
             _layoutFormat = value.value
             invalidateLayout()
+        }
+
+    var itemOffset: Float
+        get() = _itemOffset
+        set(value) {
+            _itemOffset = value
+            setupCellSpacing()
         }
 
     private val viewManager: GridLayoutManager by lazy {
@@ -46,7 +53,6 @@ class FlexCollection : RecyclerView {
 
         initView()
 
-        invalidateLayout()
     }
 
     private fun initAttrs(attrs: AttributeSet?, defStyle: Int){
@@ -61,6 +67,10 @@ class FlexCollection : RecyclerView {
         layoutManager = viewManager
         setHasFixedSize(true)
 
+        setupCellSpacing()
+    }
+
+    private fun setupCellSpacing(){
         val itemDecoration = ItemOffsetDecoration(_itemOffset.toInt())
         addItemDecoration(itemDecoration)
     }
@@ -96,8 +106,8 @@ class FlexCollection : RecyclerView {
     }
 
     private fun spanCountByItemSize(): Int {
-        val itemSize = findViewHolderForAdapterPosition(viewManager.findFirstCompletelyVisibleItemPosition())
-                ?.itemView?.width?.plus(_itemOffset)?.toInt()!!
+        val firstItemPos = viewManager.findFirstCompletelyVisibleItemPosition()
+        val itemSize = findViewHolderForAdapterPosition(firstItemPos)?.itemView?.width?.plus(_itemOffset)?.toInt()!!
         val parent = parent as View
         return parent.width/itemSize
     }

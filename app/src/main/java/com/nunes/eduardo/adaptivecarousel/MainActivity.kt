@@ -16,26 +16,35 @@ class MainActivity : AppCompatActivity() {
                 "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
                 "39", "40", "41", "42", "43", "44", "45", "46", "47")
 
-        val viewAdapter = MyAdapter(items)
+        val firstCell = CollectionViewCell(contentPanel)
+        val model = CollectionModel(
+                CollectionLayoutFormat.HORIZONTAL,
+                resources.getDimension(R.dimen.item_offset),
+                items.map {
+                    CollectionCellModel(
+                            "test",
+                            ItemTest(Size(0F, 0F, 0F), it),
+                            null
+                    )
+                }
+        )
 
-        flexCollection.apply {
-            adapter = viewAdapter
-        }
+        firstCell.setupView(model)
 
         radioButton.setOnClickListener {
-            flexCollection.layoutFormat = CollectionLayoutFormat.HORIZONTAL
+            firstCell.changeLayoutFormat( CollectionLayoutFormat.HORIZONTAL )
         }
 
         radioButton2.setOnClickListener {
-            flexCollection.layoutFormat = CollectionLayoutFormat.VERTICAL
+            firstCell.changeLayoutFormat(CollectionLayoutFormat.VERTICAL)
         }
 
         radioButton3.setOnClickListener {
-            flexCollection.layoutFormat = CollectionLayoutFormat.GRID
+            firstCell.changeLayoutFormat(CollectionLayoutFormat.GRID )
         }
 
         radioButton4.setOnClickListener {
-            flexCollection.layoutFormat = CollectionLayoutFormat.HORIZONTAL
+            firstCell.changeLayoutFormat( CollectionLayoutFormat.HORIZONTAL )
         }
     }
 }
